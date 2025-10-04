@@ -12,6 +12,9 @@ body.app {
   margin: 0;
   padding: 0;
 }
+body,input,select,textarea{
+  font-size:  1.1rem;
+}
 
 .app__header {
   background: $yinmn-blue;

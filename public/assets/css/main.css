@@ -161,6 +161,10 @@ body.app {
   padding: 0;
 }
 
+body, input, select, textarea {
+  font-size: 1.1rem;
+}
+
 .app__header {
   background: rgb(72, 86, 150);
   padding: 1rem;
