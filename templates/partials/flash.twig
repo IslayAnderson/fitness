@@ -1,0 +1,22 @@
+{# Renders flash messages passed as:
+   flashes = [
+     { type: 'success'|'info'|'warning'|'error', message: '...' },
+     ...
+   ]
+#}
+{% if flashes is defined and flashes %}
+    <div class="flash" role="status" aria-live="polite">
+        {% for f in flashes %}
+            {% set cls = {
+                'success':'flash--success',
+                'info':'flash--info',
+                'warning':'flash--warning',
+                'error':'flash--error'
+            }[f.type|default('info')] %}
+            <div class="flash__item {{ cls }}">
+                <span class="flash__icon" aria-hidden="true">●</span>
+                <span class="flash__text">{{ f.message }}</span>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}

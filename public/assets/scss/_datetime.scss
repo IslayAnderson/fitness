@@ -1,0 +1,12 @@
+/* datetime partial */
+.datetime { margin: 1rem 0 1.5rem; }
+.datetime__legend { font-weight: 700; margin-bottom: .5rem; color: rgba(72,86,150,1); } /* $yinmn-blue */
+.datetime__grid { display: grid; grid-template-columns: repeat(2, minmax(140px, 1fr)); gap: .75rem; }
+.datetime__field { display: flex; flex-direction: column; gap: .25rem; }
+.datetime__label { font-weight: 600; }
+.datetime__input {
+  background: #fff; border: 1px solid rgba(0,0,0,.12); border-radius: 8px; padding: .5rem .6rem;
+}
+@media (max-width: 520px) {
+  .datetime__grid { grid-template-columns: 1fr; }
+}

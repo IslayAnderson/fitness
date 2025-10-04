@@ -1,0 +1,50 @@
+{% extends 'layout.twig' %}
+{% block content %}
+    <section class="exercise">
+        <h1 class="exercise__title">Log Exercise</h1>
+
+        <form id="logForm" class="exercise__form" autocomplete="off">
+            {% include 'partials/datetime.twig' with {
+                name: 'datetime',
+                label: 'When did you train?',
+                required: false
+            } %}
+
+
+            <div class="exercise__grid">
+                <label class="exercise__label" for="ex_exercise">Exercise
+                    <select id="ex_exercise" name="exercise" class="exercise__input">
+                        <option value="{{ last_exercise[0].id }}">Last Exercise: {{ last_exercise[0].exercise }}</option>
+                        {% for e in exercises %}
+                            <option value="{{ e.id }}">{{ e.exercise }}</option>
+                        {% endfor %}
+                    </select>
+                </label>
+
+                <label class="exercise__label">Weight
+                    <input name="weight" type="number" step="0.1" class="exercise__input" />
+                </label>
+                <label class="exercise__label">Reps
+                    <input name="reps" type="number" class="exercise__input" />
+                </label>
+                <label class="exercise__label">Sets
+                    <input name="sets" type="number" class="exercise__input" />
+                </label>
+                <label class="exercise__label">Effort
+                    <select name="effort" class="exercise__input">
+                        <option value="">--</option>
+                        {% for ef in efforts %}
+                            <option value="{{ ef.id }}">{{ ef.name }}</option>
+                        {% endfor %}
+                    </select>
+                </label>
+            </div>
+
+            <div class="exercise__actions">
+                <button type="submit" class="button">Save</button>
+            </div>
+        </form>
+
+        <output id="logResult" class="exercise__result" aria-live="polite"></output>
+    </section>
+{% endblock %}

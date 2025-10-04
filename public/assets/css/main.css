@@ -1,0 +1,162 @@
+.home {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+.home__title {
+  font-size: 2rem;
+  color: rgb(72, 86, 150);
+}
+.home__intro {
+  font-size: 1.1rem;
+  color: #333;
+  margin: 1rem auto 2rem;
+  max-width: 500px;
+}
+.home__links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+.home .button--secondary {
+  background: rgb(249, 199, 132);
+  color: #333;
+}
+.home__illustration {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* datetime partial */
+.datetime {
+  margin: 1rem 0 1.5rem;
+}
+
+.datetime__legend {
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: rgb(72, 86, 150);
+} /* $yinmn-blue */
+.datetime__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(140px, 1fr));
+  gap: 0.75rem;
+}
+
+.datetime__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.datetime__label {
+  font-weight: 600;
+}
+
+.datetime__input {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  padding: 0.5rem 0.6rem;
+}
+
+@media (max-width: 520px) {
+  .datetime__grid {
+    grid-template-columns: 1fr;
+  }
+}
+.exercise__grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.exercise__label {
+  width: calc(50% - 2rem);
+  margin: 0.5rem 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.exercise__label input {
+  width: 60%;
+}
+.exercise__label select {
+  width: 62%;
+}
+.exercise__actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+@media (max-width: 480px) {
+  .exercise__label {
+    width: calc(100% - 2rem);
+  }
+}
+
+body.app {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  color: #333333;
+  background: rgb(231, 231, 231);
+  margin: 0;
+  padding: 0;
+}
+
+.app__header {
+  background: rgb(72, 86, 150);
+  padding: 1rem;
+}
+
+.nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav__item {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.nav__item:hover {
+  text-decoration: underline;
+}
+
+.app__main {
+  padding: 2rem;
+  max-width: 1000px;
+}
+
+.button {
+  background: rgb(252, 122, 30);
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: rgb(242, 76, 0);
+}
+
+/* Form fields */
+.field__input, .field__select, .field__textarea {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  padding: 0.5rem 0.6rem;
+}
+
+/* Charts */
+.chart__stage {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  background: white;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+/*# sourceMappingURL=main.css.map */

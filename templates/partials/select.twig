@@ -1,0 +1,25 @@
+{# Generic select with options.
+   Props:
+   - id, name, label, required (bool),
+   - options: [{value: '1', label: 'One'}, ...],
+   - selected (value),
+   - placeholder (string, optional first option)
+#}
+<div class="field">
+    {% if label is defined %}
+        <label class="field__label" for="{{ id|default(name) }}">{{ label }}</label>
+    {% endif %}
+    <select class="field__select" id="{{ id|default(name) }}" name="{{ name }}" {% if required %}required{% endif %}>
+        {% if placeholder is defined %}
+            <option value="">{{ placeholder }}</option>
+        {% endif %}
+        {% for opt in options %}
+            <option value="{{ opt.value }}" {% if selected is defined and selected == opt.value %}selected{% endif %}>
+                {{ opt.label }}
+            </option>
+        {% endfor %}
+    </select>
+    {% if error_list is defined and error_list %}
+        {% include 'partials/form_errors.twig' with { errors: error_list } %}
+    {% endif %}
+</div>

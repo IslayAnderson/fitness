@@ -1,0 +1,19 @@
+{% extends 'layout.twig' %}
+{% block content %}
+    <section class="diary">
+        <h1 class="diary__title">Diary</h1>
+
+        <form id="diaryForm" class="diary__form" autocomplete="off">
+            <div class="diary__field">
+                <label class="diary__label" for="d_entry">Entry</label>
+                <textarea id="d_entry" name="diary" rows="6" required class="diary__textarea"></textarea>
+            </div>
+
+            <div class="diary__actions">
+                <button type="submit" class="button">Save</button>
+            </div>
+        </form>
+
+        <output id="diaryResult" class="diary__result" aria-live="polite"></output>
+    </section>
+{% endblock %}

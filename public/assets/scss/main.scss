@@ -1,0 +1,66 @@
+@import 'breakpoints';
+@import 'variables';
+@import 'home';
+@import 'datetime';
+@import 'exercise';
+
+body.app {
+  font-family: $font-stack;
+  color: $text-colour;
+  background: $platinum;
+  margin: 0;
+  padding: 0;
+}
+
+.app__header {
+  background: $yinmn-blue;
+  padding: 1rem;
+}
+
+.nav {
+  display: flex;
+  gap: 1rem;
+}
+.nav__item {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+.nav__item:hover {
+  text-decoration: underline;
+}
+
+.app__main {
+  padding: 2rem;
+  max-width: 1000px;
+}
+
+.button {
+  background: $pumpkin;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+.button:hover {
+  background: $golden-gate-bridge;
+}
+
+/* Form fields */
+.field__input, .field__select, .field__textarea {
+  background: white;
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 8px;
+  padding: .5rem .6rem;
+}
+
+/* Charts */
+.chart__stage {
+  border: 1px solid rgba(0,0,0,.1);
+  border-radius: 12px;
+  background: white;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{{ title|default('Fitness') }}</title>
+    <link rel="stylesheet" href="{{ base_path }}/assets/css/main.css" />
+</head>
+<body class="app">
+<header class="app__header">
+    <nav class="nav" aria-label="Primary">
+        <a class="nav__item" href="{{ base_path }}/measurements">Measurements</a>
+        <a class="nav__item" href="{{ base_path }}/exercise">Exercise</a>
+        <a class="nav__item" href="{{ base_path }}/diary">Diary</a>
+        <a class="nav__item" href="{{ base_path }}/data">Data</a>
+    </nav>
+</header>
+
+<main class="app__main">
+    {% block content %}{% endblock %}
+</main>
+
+<footer class="app__footer">
+    <small>&copy; {{ "now"|date("Y") }} Fitness</small>
+</footer>
+
+<script type="module" src="{{ base_path }}/assets/js/main.js"></script>
+</body>
+</html>

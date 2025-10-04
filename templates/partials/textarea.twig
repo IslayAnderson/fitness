@@ -1,0 +1,20 @@
+{# Generic textarea.
+   Props: id, name, label, rows (int), value, required, placeholder, hint, error_list
+#}
+<div class="field">
+    {% if label is defined %}
+        <label class="field__label" for="{{ id|default(name) }}">{{ label }}</label>
+    {% endif %}
+    <textarea
+            class="field__textarea"
+            id="{{ id|default(name) }}"
+            name="{{ name }}"
+            rows="{{ rows|default(6) }}"
+    {% if placeholder is defined %} placeholder="{{ placeholder }}" {% endif %}
+            {% if required %} required {% endif %}
+  >{{ value|default('') }}</textarea>
+    {% if hint is defined %}<small class="field__hint">{{ hint }}</small>{% endif %}
+    {% if error_list is defined and error_list %}
+        {% include 'partials/form_errors.twig' with { errors: error_list } %}
+    {% endif %}
+</div>

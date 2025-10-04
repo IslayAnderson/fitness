@@ -1,0 +1,22 @@
+{# Renders per-field or global form errors.
+   Pass either:
+   - errors: ['Problem A', 'Problem B']
+   - or errors: { fieldName: ['msg1','msg2'], otherField: ['...'] }
+#}
+{% if errors is defined and errors %}
+    <ul class="form-errors" role="alert">
+        {% if errors is iterable and errors is not same as([]) and errors|first is iterable %}
+            {# object shape: { field: [msgs] } #}
+            {% for field, msgs in errors %}
+                {% for msg in msgs %}
+                    <li class="form-errors__item">{{ msg }}</li>
+                {% endfor %}
+            {% endfor %}
+        {% else %}
+            {# array shape: [msgs] #}
+            {% for msg in errors %}
+                <li class="form-errors__item">{{ msg }}</li>
+            {% endfor %}
+        {% endif %}
+    </ul>
+{% endif %}

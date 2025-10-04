@@ -1,0 +1,33 @@
+.home {
+  text-align: center;
+  padding: 4rem 2rem;
+
+  &__title {
+    font-size: 2rem;
+    color: rgba(72, 86, 150, 1);
+  }
+
+  &__intro {
+    font-size: 1.1rem;
+    color: #333;
+    margin: 1rem auto 2rem;
+    max-width: 500px;
+  }
+
+  &__links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .button--secondary {
+    background: rgba(249,199,132,1);
+    color: #333;
+  }
+
+  &__illustration {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}

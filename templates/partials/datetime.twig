@@ -1,0 +1,34 @@
+{# templates/partials/datetime.twig
+   Props:
+   - name: string            (hidden input name, e.g. 'datetime')
+   - label: string           (fieldset legend)
+   - required: bool          (optional)
+   - value: string|null      (ISO 'YYYY-MM-DD HH:MM:SS' to prefill, optional)
+#}
+{% set _name = name|default('datetime') %}
+{% set _label = label|default('Date & Time') %}
+{% set _required = required|default(false) %}
+{% set _initial = value|default(null) %}
+
+{# Split provided value into date + time if present #}
+{% set _date = _initial ? _initial[:10] : '' %}
+{% set _time = _initial ? _initial[11:16] : '' %}
+
+<fieldset class="datetime">
+    <legend class="datetime__legend">{{ _label }}</legend>
+
+    <div class="datetime__grid" data-datetime data-target="{{ _name }}">
+        <label class="datetime__field">
+            <span class="datetime__label">Date</span>
+            <input class="datetime__input" type="date" data-dt-date value="{{ _date }}" {% if _required %}required{% endif %}>
+        </label>
+
+        <label class="datetime__field">
+            <span class="datetime__label">Time</span>
+            <input class="datetime__input" type="time" data-dt-time value="{{ _time }}" {% if _required %}required{% endif %}>
+        </label>
+
+        {# Hidden field the API expects #}
+        <input type="hidden" name="{{ _name }}" data-dt-hidden value="{{ _initial ?? '' }}">
+    </div>
+</fieldset>

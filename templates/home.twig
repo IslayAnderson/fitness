@@ -1,0 +1,23 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    <section class="home">
+        <h1 class="home__title">Welcome to Your Fitness Tracker</h1>
+        <p class="home__intro">
+            Track your <strong>measurements</strong>, log your <strong>exercises</strong>,
+            and keep a <strong>daily diary</strong> of your fitness journey.
+        </p>
+
+        <nav class="home__links">
+            <a href="{{ base_path }}/app/measurements" class="button">Start Logging</a>
+            <a href="{{ base_path }}/app/data" class="button button--secondary">View Data</a>
+        </nav>
+
+        <svg class="home__illustration" viewBox="0 0 300 100" width="100%" height="auto">
+            <rect x="0" y="80" width="40" height="20" fill="rgba(72,86,150,1)" />
+            <rect x="50" y="60" width="40" height="40" fill="rgba(249,199,132,1)" />
+            <rect x="100" y="40" width="40" height="60" fill="rgba(252,122,30,1)" />
+            <rect x="150" y="20" width="40" height="80" fill="rgba(242,76,0,1)" />
+        </svg>
+    </section>
+{% endblock %}

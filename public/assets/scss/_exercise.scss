@@ -1,0 +1,36 @@
+.exercise{
+  &__form{
+
+  }
+  &__grid{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+  }
+  &__label{
+    width: calc(50% - 2rem);
+    margin: 0.5rem 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    input{
+      width: 60%;
+    }
+    select{
+      width: 62%;
+    }
+  }
+  &__actions{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  @media (max-width: $xs) {
+    &__label{
+      width: calc(100% - 2rem);
+    }
+  }
+}

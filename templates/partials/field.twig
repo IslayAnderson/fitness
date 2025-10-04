@@ -1,0 +1,24 @@
+{# Generic text/number field with label + hint + error hook.
+   Props:
+   - id, name, label, type ('text' default), value, required (bool),
+     step (for number), placeholder, hint, error_list (array)
+#}
+<div class="field">
+    {% if label is defined %}
+        <label class="field__label" for="{{ id|default(name) }}">{{ label }}</label>
+    {% endif %}
+    <input
+            class="field__input"
+            id="{{ id|default(name) }}"
+            name="{{ name }}"
+            type="{{ type|default('text') }}"
+            value="{{ value|default('') }}"
+            {% if step is defined %} step="{{ step }}" {% endif %}
+            {% if placeholder is defined %} placeholder="{{ placeholder }}" {% endif %}
+            {% if required %} required {% endif %}
+    />
+    {% if hint is defined %}<small class="field__hint">{{ hint }}</small>{% endif %}
+    {% if error_list is defined and error_list %}
+        {% include 'partials/form_errors.twig' with { errors: error_list } %}
+    {% endif %}
+</div>
