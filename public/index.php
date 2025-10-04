@@ -49,6 +49,7 @@ elseif ($uri === '/measurements') $pc->measurements();
 elseif ($uri === '/exercise') $pc->exercise();
 elseif ($uri === '/diary') $pc->diary();
 elseif ($uri === '/data') $pc->data();
+elseif ($uri === '/recent') $pc->recentLogs();
 else {
     http_response_code(404);
     echo $twig->render('layout.twig', ['title' => 'Not found', 'content' => '<h1>404</h1>']);

@@ -1,0 +1,55 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    <section class="last-logs">
+        <h1 class="last-logs__title">Recent Logs by Muscle Group</h1>
+
+        {% if groups is empty %}
+            <p class="last-logs__empty">No logs yet.</p>
+        {% else %}
+            <div class="last-logs__groups">
+                {% for g in groups %}
+                    <section class="group">
+                        <h2 class="group__title">{{ g.name }}</h2>
+
+                        {% if g.exercises is empty %}
+                            <p class="group__empty">No exercises in this muscle group.</p>
+                        {% else %}
+                            <div class="group__exercises">
+                                {% for ex in g.exercises %}
+                                    <article class="exercise-card">
+                                        <header class="exercise-card__header">
+                                            <h3 class="exercise-card__title">{{ ex.exercise }}</h3>
+                                        </header>
+
+                                        {% if ex.logs is empty %}
+                                            <p class="exercise-card__empty">No logs yet.</p>
+                                        {% else %}
+                                            <ul class="exercise-card__logs">
+                                                {% for log in ex.logs %}
+                                                    <li class="log">
+                                                        <time class="log__time" datetime="{{ log.datetime|date('c') }}">
+                                                            {{ log.datetime|date('Y-m-d H:i') }}
+                                                        </time>
+                                                        <div class="log__metrics">
+                                                            {% if log.weight is not null %}<span class="log__metric"><strong>Wt:</strong> {{ log.weight }}</span>{% endif %}
+                                                            {% if log.reps is not null %}<span class="log__metric"><strong>Reps:</strong> {{ log.reps }}</span>{% endif %}
+                                                            {% if log.sets is not null %}<span class="log__metric"><strong>Sets:</strong> {{ log.sets }}</span>{% endif %}
+                                                            {% if log.effort is not null %}<span class="log__metric"><strong>Effort:</strong> {{ log.effort }}</span>{% endif %}
+                                                            {% if log.distance is not null %}<span class="log__metric"><strong>Dist:</strong> {{ log.distance }}</span>{% endif %}
+                                                            {% if log.time is not null %}<span class="log__metric"><strong>Time:</strong> {{ log.time }}</span>{% endif %}
+                                                        </div>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        {% endif %}
+                                    </article>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </section>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </section>
+{% endblock %}

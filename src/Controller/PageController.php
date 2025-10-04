@@ -57,4 +57,49 @@ class PageController {
             'title' => 'Progress Data'
         ]);
     }
+
+    // In PageController.php
+    public function recentLogs() {
+        // 1) fetch all muscle groups and their exercises
+        $groups = $this->pdo->query(
+            'SELECT mg.id AS mg_id, mg.name AS mg_name, e.id AS ex_id, e.exercise AS ex_name
+         FROM muscle_groups mg
+         LEFT JOIN exercise e ON e.muscle_group = mg.id
+         ORDER BY mg.name, e.exercise'
+        )->fetchAll();
+
+        // 2) assemble nested structure
+        $byGroup = [];
+        foreach ($groups as $row) {
+            $gid = (int)$row['mg_id'];
+            if (!isset($byGroup[$gid])) {
+                $byGroup[$gid] = ['id' => $gid, 'name' => $row['mg_name'], 'exercises' => []];
+            }
+            if ($row['ex_id']) {
+                $byGroup[$gid]['exercises'][] = ['id' => (int)$row['ex_id'], 'exercise' => $row['ex_name'], 'logs' => []];
+            }
+        }
+
+        // 3) fetch last 3 logs per exercise (simple loop; fine for small datasets)
+        foreach ($byGroup as &$g) {
+            foreach ($g['exercises'] as &$ex) {
+                $stmt = $this->pdo->prepare(
+                    'SELECT datetime, weight, reps, sets, effort, time, distance
+                 FROM log
+                 WHERE exercise = ?
+                 ORDER BY datetime DESC
+                 LIMIT 3'
+                );
+                $stmt->execute([$ex['id']]);
+                $ex['logs'] = $stmt->fetchAll() ?: [];
+            }
+        }
+        unset($g, $ex);
+
+        echo $this->twig->render('last_logs.twig', [
+            'title' => 'Recent Logs',
+            'groups' => array_values($byGroup),
+        ]);
+    }
+
 }

@@ -1,0 +1,11 @@
+.last-logs__groups { display: grid; gap: 1.25rem; }
+.group__title { color: rgba(72,86,150,1); margin: .25rem 0 .5rem; } /* $yinmn-blue */
+.group__exercises { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+
+.exercise-card { background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:12px; padding: .9rem; }
+.exercise-card__title { margin: 0 0 .5rem; }
+.exercise-card__logs { list-style:none; margin:0; padding:0; display:grid; gap:.5rem; }
+.log { display:flex; flex-direction:column; gap:.25rem; padding:.5rem; border-radius:8px; background: rgba(231,231,231,.35); } /* $platinum */
+.log__time { font-size:.9rem; color:#555; }
+.log__metrics { display:flex; flex-wrap:wrap; gap:.5rem; font-size:.95rem; }
+.log__metric strong { font-weight:600; }

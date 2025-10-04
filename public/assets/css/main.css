@@ -95,6 +95,64 @@
   }
 }
 
+.last-logs__groups {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.group__title {
+  color: rgb(72, 86, 150);
+  margin: 0.25rem 0 0.5rem;
+} /* $yinmn-blue */
+.group__exercises {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+.exercise-card {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  padding: 0.9rem;
+}
+
+.exercise-card__title {
+  margin: 0 0 0.5rem;
+}
+
+.exercise-card__logs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.log {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  background: rgba(231, 231, 231, 0.35);
+} /* $platinum */
+.log__time {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.log__metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.log__metric strong {
+  font-weight: 600;
+}
+
 body.app {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   color: #333333;
