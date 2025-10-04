@@ -5,6 +5,8 @@ use App\Config\Database;
 use App\Controller\PageController;
 use App\Controller\ApiController;
 
+(new App\Controller\DotEnvEnvironment)->load(__DIR__ . '/../');
+
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $method = $_SERVER['REQUEST_METHOD'];
 
