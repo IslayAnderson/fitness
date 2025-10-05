@@ -18,17 +18,20 @@ body,input,select,textarea{
 
 .app__header {
   background: $yinmn-blue;
-  padding: 1rem;
+  overflow-x: auto;
 }
 
 .nav {
   display: flex;
   gap: 1rem;
+  margin:1rem;
+  width: fit-content;
 }
 .nav__item {
   color: white;
   text-decoration: none;
   font-weight: 600;
+  &:last-of-type { margin-right: 2rem; }
 }
 .nav__item:hover {
   text-decoration: underline;
