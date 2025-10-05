@@ -19,20 +19,19 @@ body,input,select,textarea{
 
 .app__header {
   background: $yinmn-blue;
-  overflow-x: auto;
+  padding: 1rem;
 }
 
 .nav {
   display: flex;
   gap: 1rem;
-  margin:1rem;
-  width: fit-content;
+  width: 100%;
+  flex-wrap: wrap;
 }
 .nav__item {
   color: white;
   text-decoration: none;
   font-weight: 600;
-  &:last-of-type { margin-right: 2rem; }
 }
 .nav__item:hover {
   text-decoration: underline;
