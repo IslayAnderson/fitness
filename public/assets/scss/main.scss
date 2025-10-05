@@ -11,6 +11,7 @@ body.app {
   background: $platinum;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 body,input,select,textarea{
   font-size:  1.1rem;
