@@ -92,6 +92,11 @@
 @media (max-width: 480px) {
   .exercise__label {
     width: calc(100% - 2rem);
+    flex-wrap: wrap;
+  }
+  .exercise__label input, .exercise__label select {
+    width: 100%;
+    margin-top: 0.5rem;
   }
 }
 

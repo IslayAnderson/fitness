@@ -31,6 +31,11 @@
   @media (max-width: $xs) {
     &__label{
       width: calc(100% - 2rem);
+      flex-wrap: wrap;
+      input, select{
+        width:100%;
+        margin-top: 0.5rem;
+      }
     }
   }
 }
