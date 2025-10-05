@@ -65,7 +65,7 @@ class PageController {
             'SELECT mg.id AS mg_id, mg.name AS mg_name, e.id AS ex_id, e.exercise AS ex_name
          FROM muscle_groups mg
          LEFT JOIN exercise e ON e.muscle_group = mg.id
-         ORDER BY mg.name, e.exercise'
+         ORDER BY mg.order, e.exercise'
         )->fetchAll();
 
         // 2) assemble nested structure
