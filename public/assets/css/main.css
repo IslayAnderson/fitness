@@ -158,6 +158,18 @@
   font-weight: 600;
 }
 
+.chart {
+  overflow: hidden;
+}
+.chart__stage {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  background: white;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  overflow-x: auto;
+}
+
 body.app {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   color: #333333;
@@ -218,15 +230,6 @@ body, input, select, textarea {
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 8px;
   padding: 0.5rem 0.6rem;
-}
-
-/* Charts */
-.chart__stage {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
-  background: white;
-  padding: 1rem;
-  margin-bottom: 2rem;
 }
 
 /*# sourceMappingURL=main.css.map */

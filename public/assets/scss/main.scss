@@ -4,6 +4,7 @@
 @import 'datetime';
 @import 'exercise';
 @import 'last-logs';
+@import 'chart';
 
 body.app {
   font-family: $font-stack;
@@ -63,11 +64,3 @@ body,input,select,textarea{
   padding: .5rem .6rem;
 }
 
-/* Charts */
-.chart__stage {
-  border: 1px solid rgba(0,0,0,.1);
-  border-radius: 12px;
-  background: white;
-  padding: 1rem;
-  margin-bottom: 2rem;
-}
