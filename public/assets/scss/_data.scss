@@ -1,0 +1,20 @@
+.data{
+  &__overview{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    &-quarter{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-content: center;
+      width:40%;
+      height: 100px;
+      margin: 5%;
+      gap: 15px;
+      background-color: $sunset;
+    }
+  }
+}

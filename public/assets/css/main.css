@@ -180,6 +180,25 @@
   }
 }
 
+.data__overview {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.data__overview-quarter {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  width: 40%;
+  height: 100px;
+  margin: 5%;
+  gap: 15px;
+  background-color: rgb(249, 199, 132);
+}
+
 body.app {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   color: #333333;

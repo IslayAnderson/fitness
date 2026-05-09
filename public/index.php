@@ -4,6 +4,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use App\Config\Database;
 use App\Controller\PageController;
 use App\Controller\ApiController;
+use App\Pages;
 
 (new App\Controller\DotEnvEnvironment)->load(__DIR__ . '/../');
 

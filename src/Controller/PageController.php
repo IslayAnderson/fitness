@@ -5,12 +5,19 @@ use Twig\Environment;
 use PDO;
 
 class PageController {
-    private Environment $twig;
-    private PDO $pdo;
+    protected Environment $twig;
+    protected PDO $pdo;
 
     public function __construct(Environment $twig, PDO $pdo) {
         $this->twig = $twig;
         $this->pdo = $pdo;
+    }
+
+    public function get_pages() {
+        $pages = glob(__DIR__.'/../pages/*.php');
+        foreach ($pages as $page) {
+            include $page;
+        }
     }
 
     public function home() {
@@ -45,6 +52,46 @@ class PageController {
             'efforts'   => $efforts
         ]);
     }
+    public function get_sorted_times(array $group)
+    {
+        // Author: some bloke on stackoverflow
+        $tmp = array();
+        foreach( $group as $times )
+        {
+            $tmp[$times] = strtotime(substr($times, 0, strpos($times, '-')));
+        }
+        asort($tmp);
+        return array_keys($tmp);
+    }
+    public function data() {
+        $total_time = 0;
+        $total_weight = 0;
+        $dates = array();
+        $log = $this->pdo->query('SELECT * FROM log')->fetchAll();
+        foreach ($log as $row) {
+            $total_weight += ($row['weight']*$row['reps'])*$row['sets'];
+            $dates[explode(' ', $row['datetime'])[0]]['time'][]=explode(' ', $row['datetime'])[1];
+        }
+        foreach ($dates as $date => $data) {
+            if(count($data['time']) >1) {
+                $ordered_time = $this->get_sorted_times($data['time']);
+                $dates[$date]['total_time'] = strtotime($ordered_time[0]) - strtotime(end($ordered_time));
+            }else{
+                $dates[$date]['total_time'] = 1;
+            }
+        }
+        foreach ($dates as $date => $data) {
+            $total_time += $data['total_time'];
+        }
+
+        echo $this->twig->render('data.twig', [
+            'title' => 'Progress Data',
+            'weeks' => 'some other bullshit',
+            'hours' => round(sqrt(abs($total_time))),
+            'workouts' => count($dates),
+            'total_weight' => $total_weight,
+        ]);
+    }
 
     public function diary() {
         echo $this->twig->render('diary.twig', [
@@ -52,11 +99,6 @@ class PageController {
         ]);
     }
 
-    public function data() {
-        echo $this->twig->render('data.twig', [
-            'title' => 'Progress Data'
-        ]);
-    }
 
     // In PageController.php
     public function recentLogs() {
