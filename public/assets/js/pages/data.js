@@ -6,6 +6,7 @@ import { LineChart } from '../chartist/dist/index.js';
 export async function initDataPage() {
     const mEl = $('#measurementsChart');
     const eEl = $('#exerciseChart');
+    const wtEl = $('#workoutTimeChart');
     const dEl = $('#diaryChart');
 
     if (!mEl && !eEl && !dEl) return;
@@ -37,7 +38,6 @@ export async function initDataPage() {
         } catch {}
     }
 
-    // Exercise weights (recent 20)
     if (eEl) {
         try {
             const rows = await getJson('/api/log');
@@ -50,6 +50,34 @@ export async function initDataPage() {
 
             new LineChart(
                 '#exerciseChart',
+                {
+                    labels: Object.keys(tableCompressed),
+                    series: [Object.values(tableCompressed)]
+                },
+                {
+                    low: 0,
+                    showArea: true
+                }
+            );
+        } catch {}
+    }
+    
+    if (wtEl) {
+        try {
+            const rows = await getJson('/api/workout_time');
+            console.log(rows);
+            let tableCompressed = {};
+            for (const row in rows) {
+                if(rows[row].total_time<4 && rows[row].total_time > 0.05) {
+                    tableCompressed[row] = rows[row].total_time;
+                }else{
+                    tableCompressed[row] = 1;
+                }
+            }
+            console.log(tableCompressed);
+
+            new LineChart(
+                '#workoutTimeChart',
                 {
                     labels: Object.keys(tableCompressed),
                     series: [Object.values(tableCompressed)]

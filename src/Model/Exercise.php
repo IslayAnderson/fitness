@@ -19,4 +19,19 @@ final class Exercise extends BaseModel
     {
         return $this->fetchOne('SELECT * FROM exercise WHERE id = ?', [$id]);
     }
+
+    public function total_weight(): float
+    {
+        {
+            $total_weight = 0;
+            $dates = array();
+            $log = $this->pdo->query('SELECT * FROM log')->fetchAll();
+            foreach ($log as $row) {
+                $total_weight += ($row['weight']*$row['reps'])*$row['sets'];
+                $dates[explode(' ', $row['datetime'])[0]]['time'][]=explode(' ', $row['datetime'])[1];
+            }
+
+            return $total_weight;
+        }
+    }
 }

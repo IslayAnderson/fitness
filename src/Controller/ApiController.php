@@ -1,8 +1,10 @@
 <?php
 namespace App\Controller;
 
+use App\Model\Workout_time;
 use PDO;
 use Exception;
+use App\Model;
 
 class ApiController {
     private PDO $pdo;
@@ -11,12 +13,12 @@ class ApiController {
     public function get(string $resource) {
         switch ($resource) {
             case 'log':
-                return $this->fetchAll('SELECT l.*, e.exercise as exercise_name FROM log l LEFT JOIN exercise e ON l.exercise = e.id ORDER BY l.datetime DESC LIMIT 500');
+                return $this->fetchAll('SELECT l.*, e.exercise as exercise_name FROM log l LEFT JOIN exercise e ON l.exercise = e.id ORDER BY l.datetime DESC');
             case 'diary':
-                return $this->fetchAll('SELECT * FROM diary ORDER BY datetime DESC LIMIT 500');
+                return $this->fetchAll('SELECT * FROM diary ORDER BY datetime DESC LIMIT');
             case 'measurements':
             case 'measurments': // accept both, lol why?
-                return $this->fetchAll('SELECT m.*, b.name as body_part_name FROM measurements m LEFT JOIN body b ON m.body_part = b.id ORDER BY m.datetime DESC LIMIT 1000');
+                return $this->fetchAll('SELECT m.*, b.name as body_part_name FROM measurements m LEFT JOIN body b ON m.body_part = b.id ORDER BY m.datetime DESC');
             case 'body':
                 return $this->fetchAll('SELECT * FROM body');
             case 'effort':
@@ -25,6 +27,9 @@ class ApiController {
                 return $this->fetchAll('SELECT * FROM exercise');
             case 'muscle_groups':
                 return $this->fetchAll('SELECT * FROM muscle_groups');
+            case 'workout_time':
+                $wt = new workout_time($this->pdo);
+                return $wt->all();
             default:
                 http_response_code(404);
                 return ['error' => 'Unknown resource'];
