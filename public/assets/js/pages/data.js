@@ -11,87 +11,55 @@ export async function initDataPage() {
     if (!mEl && !eEl && !dEl) return;
 
     // Measurements line (first body_part series)
-    // if (mEl) {
-    //     try {
-    //         const rows = await getJson('/api/measurments');
-            // console.log(rows);
-            // if (Array.isArray(rows) && rows.length) {
-            //     const firstPart = rows[0].body_part;
-            //     const series = rows
-            //         .filter(r => r.body_part == firstPart)
-            //         .sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
-            //     lineChart(mEl, series, r => Number(r.measurement), { title: 'Measurements Over Time' });
-            // }
-    //
-    //         new LineChart(
-    //             '#measurementsChart',
-    //             {
-    //                 labels: [1, 2, 3, 4, 5, 6, 7, 8],
-    //                 series: [[5, 9, 7, 8, 5, 3, 5, 4]]
-    //             },
-    //             {
-    //                 low: 0,
-    //                 showArea: true
-    //             }
-    //         );
-    //     } catch {}
-    // }
-
-    // Exercise weights (recent 20)
-    if (eEl) {
+    if (mEl) {
         try {
-            const rows = await getJson('/api/log');
-            let dataLabels = [];
-            let dataSeriesPre = [];
-            let dataSeries = [];
-            const dateFormat = {
-                year: '2-digit',
-                month: '2-digit',
-                day: '2-digit',
+            const rows = await getJson('/api/measurments');
+            console.log(rows);
+            if (Array.isArray(rows) && rows.length) {
+                const firstPart = rows[0].body_part;
+                const series = rows
+                    .filter(r => r.body_part == firstPart)
+                    .sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
+                lineChart(mEl, series, r => Number(r.measurement), { title: 'Measurements Over Time' });
             }
-            rows.forEach((row) => {
-                dataLabels.push(new Date(row.datetime).toLocaleString('en-GB', dateFormat));
-                dataSeriesPre.push(row.exercise_name);
-            })
-            dataLabels = new Set(dataLabels);
-            dataSeriesPre = new Set(dataSeriesPre);
-
-            console.log(dataLabels);
-            console.log(dataSeriesPre);
-            dataLabels.forEach((date) => {
-                const data = rows.find(row => {
-                    let rowDate = new Date(row.datetime).toLocaleString('en-GB', dateFormat);
-                    if (rowDate === date) {
-                        let pos = dataSeriesPre.findIndex((label) => label === row.exercise_name)
-                        if(typeof (dataSeries[pos]) === 'undefined') {
-                            dataSeries[pos] = [];
-                        }
-                        dataSeries[pos].push(row.weight*row.reps*row.sets)
-                    }else {
-                        return false
-                    }
-                })
-            })
-
-            console.log(dataSeries)
-
-            eEl.style.width = (dataLabels.length*25)+'vw';
-
 
             new LineChart(
-                '#exerciseChart',
+                '#measurementsChart',
                 {
-                    labels: dataLabels,
-                    series: dataSeries
+                    labels: [1, 2, 3, 4, 5, 6, 7, 8],
+                    series: [[5, 9, 7, 8, 5, 3, 5, 4]]
                 },
                 {
                     low: 0,
                     showArea: true
                 }
             );
-        } catch (error) {
-            console.log(error);
-        }
+        } catch {}
+    }
+
+    // Exercise weights (recent 20)
+    if (eEl) {
+        try {
+            const rows = await getJson('/api/log');
+            const tableCompressed = {};
+            rows.forEach((row) => {
+                const volume = (row.weight * row.reps)*row.sets;
+                const rowDate = row.datetime.split(' ')[0];
+                tableCompressed[rowDate] = tableCompressed[rowDate]?tableCompressed[rowDate]+volume:volume;
+            })
+
+            new LineChart(
+                '#exerciseChart',
+                {
+                    labels: Object.keys(tableCompressed),
+                    series: [Object.values(tableCompressed)]
+                },
+                {
+                    low: 0,
+                    showArea: true
+                }
+            );
+        } catch {}
     }
 
     // Diary frequency per day

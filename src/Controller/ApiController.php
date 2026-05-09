@@ -15,7 +15,7 @@ class ApiController {
             case 'diary':
                 return $this->fetchAll('SELECT * FROM diary ORDER BY datetime DESC LIMIT 500');
             case 'measurements':
-            case 'measurments': // accept both
+            case 'measurments': // accept both, lol why?
                 return $this->fetchAll('SELECT m.*, b.name as body_part_name FROM measurements m LEFT JOIN body b ON m.body_part = b.id ORDER BY m.datetime DESC LIMIT 1000');
             case 'body':
                 return $this->fetchAll('SELECT * FROM body');
