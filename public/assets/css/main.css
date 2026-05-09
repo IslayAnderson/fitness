@@ -162,12 +162,22 @@
   overflow: hidden;
 }
 .chart__stage {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
+  display: block;
   background: white;
   padding: 1rem;
   margin-bottom: 2rem;
-  overflow-x: auto;
+}
+@media (max-width: 768px) {
+  .chart {
+    overflow-x: auto;
+    transform: translateX(-2rem);
+    width: 100vw;
+    padding: unset;
+  }
+  .chart__stage {
+    width: 150vw;
+    height: 75vh;
+  }
 }
 
 body.app {

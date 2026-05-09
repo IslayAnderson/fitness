@@ -92,7 +92,7 @@ CREATE TABLE `effort` (
   `name` varchar(64) NOT NULL,
   `description` varchar(256) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,6 +101,16 @@ CREATE TABLE `effort` (
 
 LOCK TABLES `effort` WRITE;
 /*!40000 ALTER TABLE `effort` DISABLE KEYS */;
+INSERT INTO `effort` VALUES (1,'Easy - 1','');
+INSERT INTO `effort` VALUES (2,'Easy - 2','');
+INSERT INTO `effort` VALUES (3,'Easy - 3','');
+INSERT INTO `effort` VALUES (4,'Moderate - 1','');
+INSERT INTO `effort` VALUES (5,'Moderate - 2','');
+INSERT INTO `effort` VALUES (6,'Moderate - 3','');
+INSERT INTO `effort` VALUES (7,'Hard - 1','');
+INSERT INTO `effort` VALUES (8,'Hard - 2','');
+INSERT INTO `effort` VALUES (9,'All Out - 1','');
+INSERT INTO `effort` VALUES (10,'All Out - 2','');
 /*!40000 ALTER TABLE `effort` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -120,7 +130,7 @@ CREATE TABLE `exercise` (
   PRIMARY KEY (`id`),
   KEY `muscle_group` (`muscle_group`),
   CONSTRAINT `exercise_ibfk_1` FOREIGN KEY (`muscle_group`) REFERENCES `muscle_groups` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -188,6 +198,8 @@ INSERT INTO `exercise` VALUES (56,10,'Pallof press',NULL,NULL);
 INSERT INTO `exercise` VALUES (57,10,'Cable crunch',NULL,NULL);
 INSERT INTO `exercise` VALUES (58,11,'Wrist curl',NULL,NULL);
 INSERT INTO `exercise` VALUES (59,11,'Farmers walk',NULL,NULL);
+INSERT INTO `exercise` VALUES (60,2,'Dumbell 3 point row',NULL,NULL);
+INSERT INTO `exercise` VALUES (61,2,'Cable Lateral Raise',NULL,NULL);
 /*!40000 ALTER TABLE `exercise` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -213,7 +225,7 @@ CREATE TABLE `log` (
   PRIMARY KEY (`id`),
   KEY `exercise` (`exercise`),
   CONSTRAINT `log_ibfk_1` FOREIGN KEY (`exercise`) REFERENCES `exercise` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -222,6 +234,24 @@ CREATE TABLE `log` (
 
 LOCK TABLES `log` WRITE;
 /*!40000 ALTER TABLE `log` DISABLE KEYS */;
+INSERT INTO `log` VALUES (9,'2025-10-04 17:56:58',NULL,14,20,NULL,12,4,NULL,NULL,3);
+INSERT INTO `log` VALUES (10,'2025-10-04 17:57:16',NULL,14,35,NULL,12,1,NULL,NULL,5);
+INSERT INTO `log` VALUES (11,'2025-10-04 17:58:03',NULL,29,10,NULL,10,1,NULL,NULL,2);
+INSERT INTO `log` VALUES (12,'2025-10-04 17:58:15',NULL,14,10,NULL,10,1,NULL,NULL,2);
+INSERT INTO `log` VALUES (13,'2025-10-04 17:58:39',NULL,14,5,NULL,10,2,NULL,NULL,5);
+INSERT INTO `log` VALUES (14,'2025-10-04 18:01:35',NULL,61,2.5,NULL,10,1,NULL,NULL,5);
+INSERT INTO `log` VALUES (15,'2025-10-04 18:02:39',NULL,61,5,NULL,5,1,NULL,NULL,5);
+INSERT INTO `log` VALUES (16,'2025-10-04 18:02:58',NULL,61,7.5,NULL,5,1,NULL,NULL,5);
+INSERT INTO `log` VALUES (17,'2025-10-04 18:04:27',NULL,24,15,NULL,8,1,NULL,NULL,5);
+INSERT INTO `log` VALUES (18,'2025-10-04 18:06:30',NULL,61,15,NULL,6,2,NULL,NULL,7);
+INSERT INTO `log` VALUES (19,'2025-10-04 18:13:19',NULL,9,20,NULL,15,1,NULL,NULL,2);
+INSERT INTO `log` VALUES (20,'2025-10-04 18:13:46',NULL,9,27.5,NULL,15,1,NULL,NULL,3);
+INSERT INTO `log` VALUES (21,'2025-10-05 18:15:45',NULL,9,35,NULL,15,1,NULL,NULL,5);
+INSERT INTO `log` VALUES (22,'2025-10-06 18:16:14',NULL,9,42.5,NULL,7,1,NULL,NULL,7);
+INSERT INTO `log` VALUES (23,'2025-10-07 18:16:34',NULL,9,42.5,NULL,4,1,NULL,NULL,8);
+INSERT INTO `log` VALUES (24,'2025-10-08 18:18:53',NULL,30,5,NULL,10,1,NULL,NULL,5);
+INSERT INTO `log` VALUES (25,'2025-10-09 18:19:20',NULL,30,7,NULL,10,1,NULL,NULL,7);
+INSERT INTO `log` VALUES (26,'2025-10-10 18:19:33',NULL,30,7,NULL,5,1,NULL,NULL,8);
 /*!40000 ALTER TABLE `log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -233,13 +263,14 @@ DROP TABLE IF EXISTS `measurements`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `measurements` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `datetime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `body_part` int NOT NULL,
   `measurement` float NOT NULL,
+  PRIMARY KEY (`id`),
   KEY `body_part` (`body_part`),
   CONSTRAINT `measurements_ibfk_1` FOREIGN KEY (`body_part`) REFERENCES `body` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -248,6 +279,9 @@ CREATE TABLE `measurements` (
 
 LOCK TABLES `measurements` WRITE;
 /*!40000 ALTER TABLE `measurements` DISABLE KEYS */;
+INSERT INTO `measurements` VALUES (1,'2025-10-05 20:48:52',16,177);
+INSERT INTO `measurements` VALUES (2,'2025-10-05 20:48:56',1,177);
+INSERT INTO `measurements` VALUES (3,'2025-10-05 20:49:01',1,177);
 /*!40000 ALTER TABLE `measurements` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -261,6 +295,7 @@ DROP TABLE IF EXISTS `muscle_groups`;
 CREATE TABLE `muscle_groups` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
+  `order` int DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -271,17 +306,17 @@ CREATE TABLE `muscle_groups` (
 
 LOCK TABLES `muscle_groups` WRITE;
 /*!40000 ALTER TABLE `muscle_groups` DISABLE KEYS */;
-INSERT INTO `muscle_groups` VALUES (1,'Glutes');
-INSERT INTO `muscle_groups` VALUES (2,'Back');
-INSERT INTO `muscle_groups` VALUES (3,'Chest');
-INSERT INTO `muscle_groups` VALUES (4,'Shoulders');
-INSERT INTO `muscle_groups` VALUES (5,'Quadriceps');
-INSERT INTO `muscle_groups` VALUES (6,'Hamstrings');
-INSERT INTO `muscle_groups` VALUES (7,'Calves');
-INSERT INTO `muscle_groups` VALUES (8,'Triceps');
-INSERT INTO `muscle_groups` VALUES (9,'Biceps');
-INSERT INTO `muscle_groups` VALUES (10,'Abs');
-INSERT INTO `muscle_groups` VALUES (11,'Grip and Forearms');
+INSERT INTO `muscle_groups` VALUES (1,'Glutes',8);
+INSERT INTO `muscle_groups` VALUES (2,'Back',1);
+INSERT INTO `muscle_groups` VALUES (3,'Chest',2);
+INSERT INTO `muscle_groups` VALUES (4,'Shoulders',3);
+INSERT INTO `muscle_groups` VALUES (5,'Quadriceps',9);
+INSERT INTO `muscle_groups` VALUES (6,'Hamstrings',10);
+INSERT INTO `muscle_groups` VALUES (7,'Calves',11);
+INSERT INTO `muscle_groups` VALUES (8,'Triceps',5);
+INSERT INTO `muscle_groups` VALUES (9,'Biceps',4);
+INSERT INTO `muscle_groups` VALUES (10,'Abs',7);
+INSERT INTO `muscle_groups` VALUES (11,'Grip and Forearms',6);
 /*!40000 ALTER TABLE `muscle_groups` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -294,4 +329,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-10-04 18:30:16
+-- Dump completed on 2026-03-18 17:41:58

@@ -1,11 +1,21 @@
 .chart {
   overflow: hidden;
   &__stage {
-    border: 1px solid rgba(0, 0, 0, .1);
-    border-radius: 12px;
+    display: block;
     background: white;
     padding: 1rem;
     margin-bottom: 2rem;
-    overflow-x:  auto;
+  }
+
+  @media (max-width: $sm) {
+    overflow-x: auto;
+    transform: translateX(-2rem);
+    width: 100vw;
+    padding: unset;
+    &__stage {
+      //width: var(--some_width);
+      width: 150vw;
+      height: 75vh;
+    }
   }
 }
