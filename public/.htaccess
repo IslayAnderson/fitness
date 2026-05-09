@@ -1,5 +1,9 @@
 RewriteEngine On
 
+RewriteRule ^assets/([\w.-]+)/([\w.-]+)/([\w.-]+)\.css$ [L,QSA]
+RewriteRule ^assets/([\w.-]+)/([\w.-]+)\.js$ [L,QSA]
+
+
 # Let the homepage at "/" load index.php in public/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
