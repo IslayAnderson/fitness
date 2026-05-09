@@ -187,16 +187,25 @@
   justify-content: center;
 }
 .data__overview-quarter {
+  box-sizing: border-box;
+  text-align: center;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
-  width: 40%;
+  width: 47.5%;
   height: 100px;
-  margin: 5%;
+  margin: 2.5%;
+  padding: 5%;
   gap: 15px;
   background-color: rgb(249, 199, 132);
+}
+.data__overview-quarter:nth-child(odd) {
+  margin-left: 0;
+}
+.data__overview-quarter:nth-child(even) {
+  margin-right: 0;
 }
 
 body.app {
