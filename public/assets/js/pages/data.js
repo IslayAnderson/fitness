@@ -65,7 +65,6 @@ export async function initDataPage() {
     if (wtEl) {
         try {
             const rows = await getJson('/api/workout_time');
-            console.log(rows);
             let tableCompressed = {};
             for (const row in rows) {
                 if(rows[row].total_time<4 && rows[row].total_time > 0.05) {
@@ -74,7 +73,6 @@ export async function initDataPage() {
                     tableCompressed[row] = 1;
                 }
             }
-            console.log(tableCompressed);
 
             new LineChart(
                 '#workoutTimeChart',
